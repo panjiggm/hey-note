@@ -11,7 +11,7 @@ import {
 } from 'native-base';
 import {connect} from 'react-redux';
 
-const Notes = ({items}) => {
+const Notes = ({items, onDelete}) => {
   return (
     <Fragment>
       {items.length > 0 ? (
@@ -34,7 +34,7 @@ const Notes = ({items}) => {
                 </Button>
               </Body>
               <Right>
-                <Button danger small>
+                <Button danger small onPress={() => onDelete(id)}>
                   <Icon name="trash" />
                   <Text>Delete</Text>
                 </Button>

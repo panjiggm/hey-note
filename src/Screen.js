@@ -11,11 +11,11 @@ import {StyleSheet, ScrollView} from 'react-native';
 import {Container, Left, Content, Header, Title, Body} from 'native-base';
 import {connect} from 'react-redux';
 
-import {createNote} from './store/actions/notesAction';
+import {createNote, deleteNote} from './store/actions/notesAction';
 import FormNotes from './components/FormNotes';
 import Notes from './components/Notes';
 
-const Screen = ({notes, createNote}) => {
+const Screen = ({notes, createNote, deleteNote}) => {
   const [mode, setMode] = useState('create');
 
   const handleCreate = ({title, note}) => {
@@ -32,6 +32,10 @@ const Screen = ({notes, createNote}) => {
     const index = notes.findIndex(note => note.id === index);
   };
 
+  const handleDelete = id => {
+    deleteNote(id);
+  };
+
   return (
     <Container>
       <ScrollView>
@@ -43,7 +47,7 @@ const Screen = ({notes, createNote}) => {
         </Header>
         <Content style={styles.container}>
           <FormNotes mode={mode} onCreate={handleCreate} />
-          <Notes />
+          <Notes onDelete={handleDelete} />
         </Content>
       </ScrollView>
     </Container>
@@ -65,4 +69,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, {createNote})(Screen);
+export default connect(mapStateToProps, {createNote, deleteNote})(Screen);

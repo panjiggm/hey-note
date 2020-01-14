@@ -4,3 +4,10 @@ export const createNote = note => {
     payload: note,
   };
 };
+
+export const deleteNote = id => {
+  return {
+    type: 'DELETE_NOTE',
+    payload: id,
+  };
+};
