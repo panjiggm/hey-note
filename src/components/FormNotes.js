@@ -1,18 +1,10 @@
 import React, {Fragment} from 'react';
-import {
-  Form,
-  Item,
-  Button,
-  Input,
-  Textarea,
-  Text,
-  Right,
-  Body,
-} from 'native-base';
+import {Form, Item, Button, Input, Text, Right, Body} from 'native-base';
 import {StyleSheet} from 'react-native';
 import {Formik} from 'formik';
+import {connect} from 'react-redux';
 
-const FormNotes = ({item = {}, mode, handleInput, onCreate, onEdit}) => {
+const FormNotes = ({mode, onCreate, onEdit}) => {
   return (
     <Fragment>
       <Formik
@@ -31,7 +23,8 @@ const FormNotes = ({item = {}, mode, handleInput, onCreate, onEdit}) => {
               />
             </Item>
             <Item>
-              <Textarea
+              <Input
+                multiline
                 value={props.values.note}
                 onChangeText={props.handleChange('note')}
                 placeholder="add a note..."
@@ -59,4 +52,8 @@ const styles = StyleSheet.create({
   },
 });
 
-export default FormNotes;
+const mapStateToProps = state => {
+  return {};
+};
+
+export default connect(mapStateToProps)(FormNotes);

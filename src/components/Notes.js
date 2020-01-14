@@ -9,6 +9,7 @@ import {
   Left,
   Icon,
 } from 'native-base';
+import {connect} from 'react-redux';
 
 const Notes = ({items}) => {
   return (
@@ -48,4 +49,11 @@ const Notes = ({items}) => {
   );
 };
 
-export default Notes;
+const mapStateToProps = state => {
+  // console.log(state);
+  return {
+    items: state.notes,
+  };
+};
+
+export default connect(mapStateToProps)(Notes);
